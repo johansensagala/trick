@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dropdown List Wilayah Indonesia</title>
+</head>
+<body>
+    <h1>Dropdown List Wilayah Indonesia</h1>
+    <label for="provinsi">Provinsi:</label>
+    <select id="provinsi" onchange="populateKabupaten()">
+        <option value="">Pilih Provinsi</option>
+    </select>
+
+    <br><br>
+
+    <label for="kabupaten">Kabupaten:</label>
+    <select id="kabupaten" onchange="populateKecamatan()">
+        <option value="">Pilih Kabupaten</option>
+    </select>
+
+    <br><br>
+
+    <label for="kecamatan">Kecamatan:</label>
+    <select id="kecamatan">
+        <option value="">Pilih Kecamatan</option>
+    </select>
+
+    <script>
+        // Fungsi untuk mengambil data kabupaten/kota dari API Kemendagri
+        function getKabupaten(provinsiId) {
+            fetch(`https://dev.farizdotid.com/api/daerahindonesia/kota?id_provinsi=${provinsiId}`)
+                .then(response => response.json())
+                .then(data => {
+                    var kabupatenDropdown = document.getElementById("kabupaten");
+                    kabupatenDropdown.innerHTML = "<option value=''>Pilih Kabupaten</option>";
+
+                    data.kota_kabupaten.forEach(kabupaten => {
+                        var option = document.createElement("option");
+                        option.value = kabupaten.id;
+                        option.text = kabupaten.nama;
+                        kabupatenDropdown.add(option);
+                    });
+                })
+                .catch(error => console.log(error));
+        }
+
+        // Fungsi untuk mengambil data kecamatan dari API Kemendagri
+        function getKecamatan(kabupatenId) {
+            fetch(`https://dev.farizdotid.com/api/daerahindonesia/kecamatan?id_kota=${kabupatenId}`)
+                .then(response => response.json())
+                .then(data => {
+                    var kecamatanDropdown = document.getElementById("kecamatan");
+                    kecamatanDropdown.innerHTML = "<option value=''>Pilih Kecamatan</option>";
+
+                    data.kecamatan.forEach(kecamatan => {
+                        var option = document.createElement("option");
+                        option.value = kecamatan.id;
+                        option.text = kecamatan.nama;
+                        kecamatanDropdown.add(option);
+                    });
+                })
+                .catch(error => console.log(error));
+        }
+
+        // Fungsi untuk mengisi dropdown provinsi
+        function populateProvinsi() {
+            fetch('https://dev.farizdotid.com/api/daerahindonesia/provinsi')
+                .then(response => response.json())
+                .then(data => {
+                    var provinsiDropdown = document.getElementById("provinsi");
+                    provinsiDropdown.innerHTML = "<option value=''>Pilih Provinsi</option>";
+
+                    data.provinsi.forEach(provinsi => {
+                        var option = document.createElement("option");
+                        option.value = provinsi.id;
+                        option.text = provinsi.nama;
+                        provinsiDropdown.add(option);
+                    });
+                })
+                .catch(error => console.log(error));
+        }
+
+        // Fungsi untuk mengisi dropdown kabupaten/kota
+        function populateKabupaten() {
+            var provinsiDropdown = document.getElementById("provinsi");
+            var kabupatenDropdown = document.getElementById("kabupaten");
+            var selectedProvinsi = provinsiDropdown.value;
+
+            // Menghapus pilihan sebelumnya
+            kabupatenDropdown.innerHTML = "<option value=''>Pilih Kabupaten</option>";
+            var defaultOption = document.createElement("option");
+            defaultOption.text = "Memuat...";
+            kabupatenDropdown.add(defaultOption);
+
+            // Memanggil fungsi getKabupaten dengan ID provinsi yang dipilih
+            getKabupaten(selectedProvinsi);
+        }
+
+        // Fungsi untuk mengisi dropdown kecamatan
+        function populateKecamatan() {
+            var kabupatenDropdown = document.getElementById("kabupaten");
+            var kecamatanDropdown = document.getElementById("kecamatan");
+            var selectedKabupaten = kabupatenDropdown.value;
+
+            // Menghapus pilihan sebelumnya
+            kecamatanDropdown.innerHTML = "<option value=''>Pilih Kecamatan</option>";
+            var defaultOption = document.createElement("option");
+            defaultOption.text = "Memuat...";
+            kecamatanDropdown.add(defaultOption);
+
+            // Memanggil fungsi getKecamatan dengan ID kabupaten yang dipilih
+            getKecamatan(selectedKabupaten);
+        }
+
+        // Panggil fungsi untuk mengisi dropdown provinsi saat halaman dimuat
+        populateProvinsi();
+    </script>
+</body>
+</html>

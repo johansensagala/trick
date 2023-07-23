@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    #tabel-data {
+      margin-top: 20px;
+      border-collapse: collapse;
+    }
+
+    #tabel-data th,
+    #tabel-data td {
+      border: 1px solid black;
+      padding: 5px;
+    }
+  </style>
+</head>
+<body>
+  <label for="tahun">Pilih Tahun:</label>
+  <select id="tahun" onchange="filterByYear()">
+    <option value="all">Semua</option>
+    <option value="2021">2021</option>
+    <option value="2022">2022</option>
+    <option value="2023">2023</option>
+  </select>
+
+  <table id="tabel-data">
+    <thead>
+      <tr>
+        <th>Tahun</th>
+        <th>Data</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>2021</td>
+        <td>Data tahun 2021</td>
+      </tr>
+      <tr>
+        <td>2022</td>
+        <td>Data tahun 2022</td>
+      </tr>
+      <tr>
+        <td>2023</td>
+        <td>Data tahun 2023</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script>
+    function filterByYear() {
+      var tahun = document.getElementById("tahun").value;
+      var rows = document.querySelectorAll("#tabel-data tbody tr");
+
+      rows.forEach(function(row) {
+        var tahunData = row.querySelector("td:first-child").textContent;
+
+        if (tahun === "all" || tahunData === tahun) {
+          row.style.display = "table-row";
+        } else {
+          row.style.display = "none";
+        }
+      });
+    }
+  </script>
+</body>
+</html>

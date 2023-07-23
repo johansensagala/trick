@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="1">Hapus div 1</button>
+    <button id="2">Hapus div 1</button>
+    <button id="3">Hapus div 1</button>
+    <button id="4">Hapus div 1</button>
+    <div>
+        <h3>div 1 bernilai 1</h3>
+        <h3>div 1 bernilai 1</h3>
+        <h3>div 1 bernilai 1</h3>
+        <h3>div 1 bernilai 1</h3>
+        <h3>div 1 bernilai 1</h3>
+    </div><br>
+    <div>
+        <h3>div 2 bernilai 1</h3>
+        <h3>div 2 bernilai 1</h3>
+        <h3>div 2 bernilai 1</h3>
+        <h3>div 2 bernilai 1</h3>
+        <h3>div 2 bernilai 1</h3>
+    </div><br>
+    <div>
+        <h3>div 3 bernilai 1</h3>
+        <h3>div 3 bernilai 1</h3>
+        <h3>div 3 bernilai 1</h3>
+        <h3>div 3 bernilai 1</h3>
+        <h3>div 3 bernilai 1</h3>
+    </div><br>
+    <div>
+        <h3>div 4 bernilai 1</h3>
+        <h3>div 4 bernilai 1</h3>
+        <h3>div 4 bernilai 1</h3>
+        <h3>div 4 bernilai 1</h3>
+        <h3>div 4 bernilai 1</h3>
+    </div>
+    <audio id="bg-music" src="Puzzle/27 Agu 08.55​.aac" loop></audio>
+    <script>
+        const buttons = document.querySelectorAll('button');
+        const divs = document.querySelectorAll('div');
+      
+        buttons.forEach((button) => {
+          button.addEventListener('click', (event) => {
+            const divIndex = parseInt(event.target.id, 10) - 1;
+            const div = divs[divIndex];
+            div.removeChild(div.firstChild);
+            if (!div.firstChild) {
+              alert(`Div ${divIndex + 1} sudah habis`);
+            }
+          });
+        });
+
+        document.addEventListener("DOMContentLoaded", function() {
+    var audio = document.getElementById("bg-music");
+    audio.volume = 0.3;  // Set volume (0 to 1)
+    audio.play();
+  });
+      </script>
+      
+      
+      
+</body>
+</html>

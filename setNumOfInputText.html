@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <label for="name-input">Nama:</label>
+        <input type="text" id="name-input" name="name"><br>
+        <div id="additional-names"></div>
+      
+        <label for="num-people-select">Jumlah Orang:</label>
+        <select id="num-people-select" name="num-people" onchange="showNameInputs()">
+            <option value="1" selected>1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select><br>
+        <button type="submit">SUBMIT</button>
+    </form>
+      
+    <script>
+        function showNameInputs() {
+            const numPeople = document.getElementById("num-people-select").value;
+            const additionalNamesDiv = document.getElementById("additional-names");
+            additionalNamesDiv.innerHTML = "";
+      
+            for (let i = 2; i <= numPeople; i++) {
+                const label = document.createElement("label");
+                label.for = `name-input-${i}`;
+                label.textContent = `Nama Orang ke-${i}:`;
+        
+                const input = document.createElement("input");
+                input.type = "text";
+                input.id = `name-input-${i}`;
+                input.name = `name-${i}`;
+
+                const newline = document.createElement("br");
+        
+                additionalNamesDiv.appendChild(label);
+                additionalNamesDiv.appendChild(input);
+                additionalNamesDiv.appendChild(newline);
+            }
+        }
+    </script>
+</body>
+</html>

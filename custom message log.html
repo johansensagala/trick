@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #custom-alert {
+      position: fixed;
+      /* top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center; */
+    }
+
+    #custom-alert-content {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    #custom-alert-close {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: lightgray;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+    <button onclick="showCustomAlert()">Tekan</button>
+
+  <div id="custom-alert" style="display: none;">
+    <div id="custom-alert-content">
+      <p>Ini adalah pesan alert custom!</p>
+      <button id="custom-alert-close">Tutup</button>
+    </div>
+  </div>
+  <h1>Judul</h1>
+  <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Necessitatibus molestiae dolor voluptatem, accusantium dicta nostrum nam quo voluptatibus possimus porro saepe, inventore ex. Animi debitis sunt fuga libero, quo, fugit ab cupiditate incidunt architecto voluptates consectetur ducimus eos sed modi excepturi dolorum, voluptatibus totam necessitatibus impedit veniam nisi. Laborum, natus.</p>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi vero expedita adipisci tempora ab ad, voluptatem earum enim animi harum voluptatum numquam doloremque porro ut sed perferendis eveniet velit nobis non aperiam accusamus, quidem esse delectus. Reiciendis quis esse exercitationem nesciunt, assumenda iure? Saepe temporibus, commodi libero dolore labore eum pariatur reprehenderit quasi. Neque temporibus quo ipsa assumenda reiciendis. Ex, voluptatibus? Similique rerum possimus, laudantium repellendus blanditiis ipsa illum dolorem, saepe pariatur hic dolorum qui recusandae consequuntur. Ipsa quos atque repellendus, ab voluptas mollitia quia fugit dolorum enim itaque cupiditate ad vel esse unde quo temporibus quod, sapiente, odit pariatur?</p>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat possimus ipsum fugit esse? Dignissimos natus enim, consectetur doloremque cupiditate veritatis. Ratione magni officiis tempora esse suscipit, voluptas dicta accusamus eligendi! Nesciunt assumenda vitae autem cum deserunt libero mollitia quam eum quo odio aperiam animi blanditiis similique dolorem nemo aliquid, et qui. Porro quisquam saepe animi, incidunt neque ab amet doloremque, nihil quasi dignissimos, odit exercitationem explicabo modi aperiam possimus. Optio dignissimos natus error quaerat labore perspiciatis sunt nobis repellendus praesentium! Distinctio quod, similique inventore sequi atque reiciendis adipisci fugit eaque dolorum dicta? Quia consectetur, quisquam quod excepturi, pariatur voluptas dolorem id repudiandae velit tempore perspiciatis eius culpa, ratione deleniti voluptatibus accusantium necessitatibus reiciendis odit. Numquam fugit optio suscipit iste dolorem facilis ipsa ab dolore earum. Inventore eos eaque, incidunt nemo quod enim explicabo ipsa aut amet consequatur alias mollitia ut iste magni distinctio repellat molestiae veniam id sint eius quasi!</p>
+    
+  <script>
+    function showCustomAlert() {
+      document.getElementById("custom-alert").style.display = "flex";
+    }
+    document.getElementById("custom-alert-close").onclick = function() {
+      document.getElementById("custom-alert").style.display = "none";
+    };
+  </script>
+</body>
+</html>
